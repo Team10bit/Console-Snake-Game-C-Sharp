@@ -7,7 +7,6 @@ namespace Test
     public class Apple
     {
         int x, y;
-        Boolean eaten = false;
         public Apple(int X, int Y)
         {
             x = X;
@@ -23,25 +22,5 @@ namespace Test
         {
             return y;
         }
-        
-        public void update()
-        {
-            if (isEaten())
-            {
-                respawn();
-            }
-        }
-
-        public void respawn()
-        {
-            x = 5;
-            y = 5;
-        }
-
-        private Boolean isEaten()
-        {
-            return eaten;
-        }
-
     }
 }

@@ -9,20 +9,15 @@ namespace Test
 {
     public class Gameboard
     {
-
-        Timer tick;
-        int _tick = 10000;
         int targetTick, currentTick, previousTick;
         Random ran = new Random();
         int x, y;
         String space = "0";
         String apple = "A";
         public bool playing = true;
-
         int fruitX, fruitY;
         List<Snake> snake = new List<Snake>();
         Apple fruit;
-        AutoResetEvent auto = new AutoResetEvent(false);
         int _wid, _hei;
 
         String[,] grid;
@@ -81,8 +76,6 @@ namespace Test
             }
         }
 
-
-
         public void setup()
         {
 
@@ -94,11 +87,6 @@ namespace Test
                 }
                 Console.WriteLine(grid[i, 0]);
             }
-        }
-
-        public void changeChar(int X, int Y, char c)
-        {
-
         }
 
         void updateBoard()
@@ -165,6 +153,7 @@ namespace Test
                 }
             }
         }
+
         void displayBoard()
         {
             for (int i = 0; i < x; i++)
@@ -243,26 +232,17 @@ namespace Test
         {
 
             Console.Clear();
-            if (!snake[0].checkStatus())
-            {
-                playing = false;
-                auto.Close();
-            }
-
-            fruitX = fruit.getX();
-            fruitY = fruit.getY();
             updateBoard();
             displayBoard();
             fixSnake();
             checkControl();
 
-            fruit.update();
-
             for (int i = 0; i < snake.Count; i++)
             {
                 if (i != 0 && snake[0].getX() == snake[i].getX() && snake[0].getY() == snake[i].getY())
                 {
-                    snake[0].setStatus(false); //Snake dies.
+                    snake[0].alive = false;
+                    playing = false;
                 }
             }
 
@@ -280,7 +260,6 @@ namespace Test
                     snake[i].setDir(snake[i - 1].lastDir);
                 }
             }
-            GC.Collect();
         }
 
         public void eatFruit()

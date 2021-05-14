@@ -6,14 +6,15 @@ namespace Test
 {
     public class Snake
     {
+        public enum Directions : int { UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3 };
         int x, y;
-        bool alive = true;
+        public bool alive = true;
         bool head;
         String symbol = "";
-        public enum Directions : int { UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3 };
         public Directions direction = Directions.LEFT;
         public Directions nextDir = Directions.LEFT;
         public Directions lastDir = Directions.LEFT;
+
         public Snake(int X, int Y, bool isHead)
         {
             x = X;
@@ -29,16 +30,6 @@ namespace Test
             }
         }
 
-        public bool checkStatus()
-        {
-            return alive;
-        }
-
-        public void setStatus(bool AoD)
-        {
-            alive = AoD;
-        }
-
         public bool isHead()
         {
             return head;
@@ -48,7 +39,7 @@ namespace Test
         {            
             direction = nextDir;
 
-            switch (nextDir) //was direction
+            switch (nextDir) 
             {
                 case Directions.LEFT:
                     y -= 1;
@@ -71,24 +62,9 @@ namespace Test
             nextDir = dir;
         }
 
-        public Directions getDir()
-        {
-            return direction;
-        }
-
         public String getChar()
         {
             return symbol;
-        }
-
-        public int getY()
-        {
-            return y;
-        }
-
-        public void setY(int Y)
-        {
-            y = Y;
         }
 
         public void setX(int X)
@@ -96,10 +72,19 @@ namespace Test
             x = X;
         }
 
+        public void setY(int Y)
+        {
+            y = Y;
+        }
+
         public int getX()
         {
             return x;
         }
 
+        public int getY()
+        {
+            return y;
+        }
     }
 }
